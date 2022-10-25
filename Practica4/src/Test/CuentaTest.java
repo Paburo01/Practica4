@@ -31,12 +31,12 @@ class CuentaTest {
 	}
 	
 	@Test
-	void testReintegro() {
+	void testReintegro() throws Exception {
 		assertEquals(45, cuenta1.reintegro(5));
 	}
 
 	@Test
-	void testIngreso() {
+	void testIngreso() throws Exception {
 		assertEquals(50, cuenta1.ingreso(5));
 	}
 	

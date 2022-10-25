@@ -11,11 +11,13 @@ import Programa.Cuenta;
 
 class CuentaTest {
 
-	static Cuenta cuenta1;
+	static Cuenta C12345;
+	static Cuenta C678890;
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		cuenta1=new Cuenta("12345","Pepe",50d);
+		C12345=new Cuenta("12345","Pepe",50d);
+		C678890=new Cuenta("678890","Pablo",0d);
 	}
 
 	@AfterAll
@@ -30,6 +32,7 @@ class CuentaTest {
 	void tearDown() throws Exception {
 	}
 	
+	/*
 	@Test
 	void testReintegro() throws Exception {
 		assertEquals(45, cuenta1.reintegro(5));
@@ -38,6 +41,34 @@ class CuentaTest {
 	@Test
 	void testIngreso() throws Exception {
 		assertEquals(50, cuenta1.ingreso(5));
+	}
+	*/
+	
+	@Test
+	public void Test0014() throws Exception {
+		C12345.reintegro(200);
+		C678890.reintegro(350);
+		
+		C12345.ingreso(100);
+		
+		
+		C678890.reintegro(200);
+		fail("No ha saltado la excepcion");
+	
+		C678890.reintegro(150);
+		
+		C12345.reintegro(200);
+		
+		C678890.ingreso(50);
+		
+	
+		C678890.reintegro(100);
+		fail("No ha saltado la excepcion");
+		
+		
+		assertEquals(-250, C12345.getSaldo());
+		assertEquals(-450, C678890.getSaldo());
+		
 	}
 	
 	

@@ -1,18 +1,23 @@
 package Programa;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import Programa.Movimiento.signo;
 
 public class Cuenta {
 	String numero;
 	String titular;
 	Double saldo;
 	List <Movimiento> mMovimientos; 
+	final int descubierto=-500;
 	
 	public Cuenta(String nom, String tit, Double sal){
 		
 		this.titular=nom;
 		this.saldo=sal;
 		this.numero=tit;
+		mMovimientos=new ArrayList<>();
 	}
 	
 	public String getNumero() {
@@ -60,10 +65,12 @@ public class Cuenta {
 		if(cant <= 0) {
 			throw new Exception("No se puede retirar un valor igual o menor a 0");
 		}
-		if(saldo>=cant) {
+		if(saldo-cant > descubierto) {
 			saldo-=cant;
+			Movimiento mov=new Movimiento(cant, Movimiento.signo.H);
+			mMovimientos.add(mov);
 		}else {
-			throw new Exception("No hay saldo suficiente");
+			throw new Exception("Fondos insuficientes (saldo " + saldo + " €) en la cuenta " +numero+ " para el reintegro de " +cant+ "€");
 		}
 		return saldo;
 	}

@@ -7,6 +7,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import Programa.Cuenta;
+
 class CuentaTest {
 
 	static Cuenta cuenta1;
@@ -27,15 +29,18 @@ class CuentaTest {
 	@AfterEach
 	void tearDown() throws Exception {
 	}
-
-	@Test
-	void testIngreso() {
-		assertEquals(45, cuenta1.ingreso(5));
-	}
 	
 	@Test
 	void testReintegro() {
-		assertEquals(50, cuenta1.reingreso(5));
+		assertEquals(45, cuenta1.reintegro(5));
 	}
+
+	@Test
+	void testIngreso() {
+		assertEquals(50, cuenta1.ingreso(5));
+	}
+	
+	
+	
 
 }
